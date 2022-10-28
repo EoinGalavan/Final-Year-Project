@@ -1,27 +1,17 @@
 from asyncio.windows_events import NULL
 from doctest import OutputChecker
+from turtle import color
 import torch
-import cv2
-import argparse
-import os
 
 import posenet
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--model', type=int, default=101)
-parser.add_argument('--scale_factor', type=float, default=1.0)
-parser.add_argument('--notxt', action='store_true')
-parser.add_argument('--image_dir', type=str, default='./images')
-parser.add_argument('--output_dir', type=str, default='./output')
-args = parser.parse_args()
-
-model = posenet.load_model(args.model)
+model = posenet.load_model(101)
 model = model.cuda()
 output_stride = model.output_stride
 
-def Capture(*cap):
-    input_image, draw_image, output_scale = posenet.read_cap(
-            cap, scale_factor=args.scale_factor, output_stride=output_stride)
+def Capture(cap):
+    input_image, display_image, output_scale = posenet.read_cap(
+            cap, scale_factor=0.7125, output_stride=output_stride)
 
     with torch.no_grad():
         input_image = torch.Tensor(input_image).cuda()
@@ -35,13 +25,12 @@ def Capture(*cap):
             displacement_bwd_result.squeeze(0),
             output_stride=output_stride,
             max_pose_detections=10,
-            min_pose_score=0.25)
+            min_pose_score=0.15)
 
     keypoint_coords *= output_scale
 
-    if args.output_dir:
-        draw_image = posenet.draw_skel_and_kp(
-            draw_image, pose_scores, keypoint_scores, keypoint_coords,
-            min_pose_score=0.25, min_part_score=0.25)
-
-        cv2.imwrite(os.path.join(args.output_dir, os.path.relpath(f, args.image_dir)), draw_image)
+    # TODO this isn't particularly fast, use GL for drawing and display someday...
+    overlay_image = posenet.draw_skel_and_kp(
+        display_image, pose_scores, keypoint_scores, keypoint_coords,
+        min_pose_score=0.15, min_part_score=0.1)
+    return overlay_image

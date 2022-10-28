@@ -39,18 +39,19 @@ def main():
     
         # --- Drawing code should go here
         # First, clear the screen and draw camera
-        screen.fill(0) 
-        frame = getCamFrame(False , cap)
-        #pose.Capture()
+        screen.fill(0)
+        frame = pose.Capture(cap)
         if frame is not None :
+            frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+            frame=numpy.rot90(frame)
+            frame=pygame.surfarray.make_surface(frame)
             screen.blit(frame,(0,0))
+
         #The you can draw different shapes and lines or add text to your background stage.
         
         pygame.draw.rect(screen, BLACK, [0, 0, size[0], size[1]],2)
         pygame.draw.line(screen, GREEN, [0, 0], [100, 100], 5)
         pygame.draw.ellipse(screen, BLACK, [20,20,250,100], 2)
-
-        #frame=cap.read()
         
         # --- Go ahead and update the screen with what we've drawn.
         pygame.display.flip()
@@ -61,17 +62,8 @@ def main():
     #Once we have exited the main program loop we can stop the game engine:
     pygame.quit()
 
-def getCamFrame(color,camera):
-    retval, frame=camera.read()
-    if frame is not None :
-        if not color:
-            frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-        frame=numpy.rot90(frame)
-        frame=pygame.surfarray.make_surface(frame)
-    return frame
-
 if __name__ == "__main__":
-    #from Classes import Capture as pose
+    from Classes import Capture as pose
 
     #pose.setupCapture()
     main()
