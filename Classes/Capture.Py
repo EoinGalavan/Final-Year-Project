@@ -33,4 +33,4 @@ def Capture(cap):
     overlay_image = posenet.draw_skel_and_kp(
         display_image, pose_scores, keypoint_scores, keypoint_coords,
         min_pose_score=0.15, min_part_score=0.1)
-    return overlay_image
+    return overlay_image, keypoint_coords[0]

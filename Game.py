@@ -3,14 +3,10 @@ from pygame.locals import *
 import cv2
 import numpy
 
+from Classes.Defines import *
+
 def main():
     pygame.init()
-
-    # Define some colors
-    BLACK = ( 0, 0, 0)
-    WHITE = ( 255, 255, 255)
-    GREEN = ( 0, 255, 0)
-    RED = ( 255, 0, 0)
 
     # Open a new window
     size = (1280, 720)
@@ -27,7 +23,7 @@ def main():
     cap = cv2.VideoCapture(0)
     cap.set(3, size[0])
     cap.set(4, size[1])
-    
+
     # -------- Main Program Loop -----------
     while carryOn:
         # --- Main event loop
@@ -40,7 +36,10 @@ def main():
         # --- Drawing code should go here
         # First, clear the screen and draw camera
         screen.fill(0)
-        frame = pose.Capture(cap)
+        frame, keypoint_coords = pose.Capture(cap)
+
+        # defined in Defines
+        noseCoord = keypoint_coords[nose]
         if frame is not None :
             frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
             frame=numpy.rot90(frame)
