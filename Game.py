@@ -4,6 +4,7 @@ import cv2
 import numpy
 
 from Classes.Defines import *
+from Classes.AnalysePose import *
 
 def main():
     pygame.init()
@@ -19,6 +20,10 @@ def main():
     # The clock will be used to control how fast the screen updates
     clock = pygame.time.Clock()
 
+    #seting up font for text display
+    pygame.font.init() 
+    my_font = pygame.font.SysFont('arial', 30)
+
     #set up camera capture
     cap = cv2.VideoCapture(0)
     cap.set(3, size[0])
@@ -30,27 +35,24 @@ def main():
         for event in pygame.event.get(): # User did something
             if event.type == pygame.QUIT: # If user clicked close
                 carryOn = False # Flag that we are done so we can exit the while loop
-    
-        # --- Game logic should go here
-    
-        # --- Drawing code should go here
+        
         # First, clear the screen and draw camera
         screen.fill(0)
         frame, keypoint_coords = pose.Capture(cap)
-
-        # defined in Defines
-        noseCoord = keypoint_coords[nose]
         if frame is not None :
             frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
             frame=numpy.rot90(frame)
             frame=pygame.surfarray.make_surface(frame)
             screen.blit(frame,(0,0))
 
-        #The you can draw different shapes and lines or add text to your background stage.
-        
-        pygame.draw.rect(screen, BLACK, [0, 0, size[0], size[1]],2)
-        pygame.draw.line(screen, GREEN, [0, 0], [100, 100], 5)
-        pygame.draw.ellipse(screen, BLACK, [20,20,250,100], 2)
+        # --- Game logic should go here
+        poseResult = AnalysePose(keypoint_coords[leftShoulder], keypoint_coords[leftWrist], keypoint_coords[rightShoulder], keypoint_coords[rightWrist])
+        if(len(poseResult) == 1):
+            poseResult
+
+        # --- Drawing code should go here
+        text_surface = my_font.render(poseResult, False, (0, 0, 0))
+        screen.blit(text_surface, (0,0))
         
         # --- Go ahead and update the screen with what we've drawn.
         pygame.display.flip()
