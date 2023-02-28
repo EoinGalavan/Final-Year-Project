@@ -1,7 +1,7 @@
 {
-    "python.analysis.extraPaths": ["./Classes/"],
+    "python.analysis.extraPaths": ["${workspaceFolder}/Classes/"],
     "python.terminal.activateEnvironment": true,
-    "python.defaultInterpreterPath": "C:/ProgramData/Anaconda3/envs/tensorflow/python.exe",
+    "python.defaultInterpreterPath": "${workspaceFolder}/env/tensorflow/python.exe",
     "terminal.integrated.env.windows": {
         "PYTHONPATH": "${workspaceFolder};"
       },

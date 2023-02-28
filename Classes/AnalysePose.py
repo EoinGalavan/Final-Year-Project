@@ -1,13 +1,13 @@
 import math
-#                 0   1   2   3   4   5   6   7
-combinations = [["", "", "J", "V", "D", "", "", ""],# 0
+#   right         0   1   2    3    4    5   6   7
+combinations = [["", "num", "J", "V", "D", "", "", ""],# 0
                 ["", "", "W", "X", "", "", "", ""],# 1
                 ["", "", "", "", "", "", "", ""],# 2
                 ["", "", "Z", "", "", "", "", ""],# 3
-                ["", "E", "F", "G", "", "", "", ""],# 4
+                ["", "E", "F", "G", "endWord", "", "", ""],# 4
                 ["K", "L", "M", "N", "A", "", "", ""],# 5
-                ["P", "Q", "R", "S", "B", "H", "", "O"],# 6
-                ["T", "U", "Y", "", "C", "I", "", ""]]# 7
+                ["P", "Q", "R", "S", "B", "H", "", ""],# 6
+                ["T", "U", "Y", "reset", "C", "I", "O", ""]]# 7
 
 def AnalysePose(leftShoulder, leftWrist, rightShoulder, rightWrist):
     # angles in radians
