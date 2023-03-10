@@ -5,6 +5,7 @@ import numpy
 
 from Classes.Defines import *
 from Classes.AnalysePose import *
+from Classes.Button import *
 
 def main():
     pygame.init()
@@ -29,6 +30,8 @@ def main():
     cap.set(3, size[0])
     cap.set(4, size[1])
 
+    button = Button((400, 40, 100, 100))
+
     # -------- Main Program Loop -----------
     while carryOn:
         # --- Main event loop
@@ -49,8 +52,13 @@ def main():
         poseResult = AnalysePose(keypoint_coords[leftShoulder], keypoint_coords[leftWrist], keypoint_coords[rightShoulder], keypoint_coords[rightWrist])
         if(len(poseResult) == 1):
             poseResult
+        leftHandPos = fitToScreen(getHandPos(keypoint_coords[leftElbow], keypoint_coords[leftWrist]), size[0])
+        rightHandPos = fitToScreen(getHandPos(keypoint_coords[rightElbow], keypoint_coords[rightWrist]), size[0])
+        button.checkCollision(leftHandPos, rightHandPos)
 
         # --- Drawing code should go here
+        button.draw(screen)
+
         text_surface = my_font.render(poseResult, False, (0, 0, 0))
         screen.blit(text_surface, (0,0))
         

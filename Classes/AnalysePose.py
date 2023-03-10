@@ -47,3 +47,15 @@ def getDirection(value):
     if(value < -22.5):
         return 7
     return 0
+
+def getHandPos(elbow, wrist):
+    elbowToWrist = wrist - elbow
+    hand = wrist + elbowToWrist / 2
+    return hand
+
+def fitToScreen(coord, screenSize):
+    temp = coord[0]
+    coord[0] = coord[1]
+    coord[1] = temp
+    coord[0] = screenSize - coord[0]
+    return coord
