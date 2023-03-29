@@ -1,15 +1,16 @@
 #pragma once
 from Classes.AnalysePose import *
 from Classes.Button import *
+from Classes.Timer import *
 from enum import Enum
 
 # Open a new window
 size = (1280, 720)
 screen = pygame.display.set_mode(size)
+frameRate = 60
 
 # scene enum
 scenes = Enum('Scenes', ['MainMenu', 'Level'])
-currentScene = scenes.MainMenu
 
 # Define some colors
 BLACK = ( 0, 0, 0)

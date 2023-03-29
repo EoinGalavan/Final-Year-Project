@@ -4,6 +4,7 @@ import cv2
 import numpy
 
 from Classes.Scenes.MainMenu import *
+from Classes.Scenes.Level import *
 
 def main():
     pygame.init()
@@ -22,6 +23,7 @@ def main():
 
     scene = MainMenu()
     activeScene = scenes.MainMenu
+    currentScene = scenes.MainMenu
 
     # -------- Main Program Loop -----------
     while carryOn:
@@ -42,22 +44,25 @@ def main():
         # --- Game logic should go here
         leftHandPos = fitToScreen(getHandPos(keypoint_coords[leftElbow], keypoint_coords[leftWrist]), size[0])
         rightHandPos = fitToScreen(getHandPos(keypoint_coords[rightElbow], keypoint_coords[rightWrist]), size[0])
-        scene.update(keypoint_coords, leftHandPos, rightHandPos)
+        currentScene = scene.update(keypoint_coords, leftHandPos, rightHandPos, currentScene)
 
         # --- Drawing code should go here
         scene.draw()
-
+            
         # if the scene changes update it here
         if(activeScene != currentScene):
+            activeScene = currentScene
             match currentScene:
                 case scenes.MainMenu:
                     scene = MainMenu()
+                case scenes.Level:
+                    scene = Level()
         
         # --- Go ahead and update the screen with what we've drawn.
         pygame.display.flip()
         
         # --- Limit to 60 frames per second
-        clock.tick(60)
+        clock.tick(frameRate)
     
     #Once we have exited the main program loop we can stop the game engine:
     pygame.quit()
