@@ -1,3 +1,16 @@
+#pragma once
+from Classes.AnalysePose import *
+from Classes.Button import *
+from enum import Enum
+
+# Open a new window
+size = (1280, 720)
+screen = pygame.display.set_mode(size)
+
+# scene enum
+scenes = Enum('Scenes', ['MainMenu', 'Level'])
+currentScene = scenes.MainMenu
+
 # Define some colors
 BLACK = ( 0, 0, 0)
 WHITE = ( 255, 255, 255)
@@ -22,3 +35,7 @@ leftKnee = 13
 rightKnee = 14
 leftAnkle = 15
 rightAnkle = 16
+
+#seting up font for text display
+pygame.font.init() 
+my_font = pygame.font.SysFont('arial', 72)

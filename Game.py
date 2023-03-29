@@ -3,17 +3,11 @@ from pygame.locals import *
 import cv2
 import numpy
 
-from Classes.Defines import *
-from Classes.AnalysePose import *
-from Classes.Button import *
+from Classes.Scenes.MainMenu import *
 
 def main():
     pygame.init()
-
-    # Open a new window
-    size = (1280, 720)
-    screen = pygame.display.set_mode(size)
-    pygame.display.set_caption("My First Game")
+    pygame.display.set_caption("Semaphore Flags")
 
     # The loop will carry on until the user exits the game (e.g. clicks the close button).
     carryOn = True
@@ -21,16 +15,13 @@ def main():
     # The clock will be used to control how fast the screen updates
     clock = pygame.time.Clock()
 
-    #seting up font for text display
-    pygame.font.init() 
-    my_font = pygame.font.SysFont('arial', 30)
-
     #set up camera capture
     cap = cv2.VideoCapture(0)
     cap.set(3, size[0])
     cap.set(4, size[1])
 
-    button = Button((400, 40, 100, 100))
+    scene = MainMenu()
+    activeScene = scenes.MainMenu
 
     # -------- Main Program Loop -----------
     while carryOn:
@@ -49,18 +40,18 @@ def main():
             screen.blit(frame,(0,0))
 
         # --- Game logic should go here
-        poseResult = AnalysePose(keypoint_coords[leftShoulder], keypoint_coords[leftWrist], keypoint_coords[rightShoulder], keypoint_coords[rightWrist])
-        if(len(poseResult) == 1):
-            poseResult
         leftHandPos = fitToScreen(getHandPos(keypoint_coords[leftElbow], keypoint_coords[leftWrist]), size[0])
         rightHandPos = fitToScreen(getHandPos(keypoint_coords[rightElbow], keypoint_coords[rightWrist]), size[0])
-        button.checkCollision(leftHandPos, rightHandPos)
+        scene.update(keypoint_coords, leftHandPos, rightHandPos)
 
         # --- Drawing code should go here
-        button.draw(screen)
+        scene.draw()
 
-        text_surface = my_font.render(poseResult, False, (0, 0, 0))
-        screen.blit(text_surface, (0,0))
+        # if the scene changes update it here
+        if(activeScene != currentScene):
+            match currentScene:
+                case scenes.MainMenu:
+                    scene = MainMenu()
         
         # --- Go ahead and update the screen with what we've drawn.
         pygame.display.flip()
