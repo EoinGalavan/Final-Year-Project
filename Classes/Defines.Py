@@ -3,6 +3,7 @@ from Classes.AnalysePose import *
 from Classes.Button import *
 from Classes.Timer import *
 from enum import Enum
+import random
 
 # Open a new window
 size = (1280, 720)
