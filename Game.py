@@ -6,6 +6,7 @@ import numpy
 from Classes.Scenes.MainMenu import *
 from Classes.Scenes.Lesson import *
 from Classes.Scenes.Practice import *
+from Classes.Scenes.LevelSelect import *
 
 def main():
     pygame.init()
@@ -53,13 +54,7 @@ def main():
         # if the scene changes update it here
         if(activeScene != currentScene):
             activeScene = currentScene
-            match currentScene:
-                case scenes.MainMenu:
-                    scene = MainMenu()
-                case scenes.Practice:
-                    scene = Practice(["A", "B", "C", "D", "E", "F", "G"], 2)
-                case scenes.Lesson:
-                    scene = Lesson(["A", "B", "C", "D", "E", "F", "G"], 2)
+            scene = changeScene(currentScene)
         
         # --- Go ahead and update the screen with what we've drawn.
         pygame.display.flip()
@@ -69,6 +64,58 @@ def main():
     
     #Once we have exited the main program loop we can stop the game engine:
     pygame.quit()
+
+def changeScene(currentScene):
+    match currentScene:
+        case scenes.MainMenu:
+            scene = MainMenu()
+        case scenes.LevelSelect_01:
+            scene = LevelSelect(1)
+        case scenes.LevelSelect_02:
+            scene = LevelSelect(2)
+        case scenes.LevelSelect_03:
+            scene = LevelSelect(3)
+        case scenes.LevelSelect_04:
+            scene = LevelSelect(4)
+        case scenes.Level_01:
+            scene = Lesson(["endWord", "reset", "A", "B", "C", "D", "E", "F", "G"], 2)
+        case scenes.Level_02:
+            scene = Practice(["endWord", "reset","A", "B", "C", "D", "E", "F", "G"], 2)
+        case scenes.Level_03:
+            pass
+        case scenes.Level_04:
+            scene = Lesson(["H", "I", "K", "L", "M", "N"], 2)
+        case scenes.Level_05:
+            scene = Practice(["H", "I", "K", "L", "M", "N"], 2)
+        case scenes.Level_06:
+            pass
+        case scenes.Level_07:
+            scene = Lesson(["O", "P", "Q", "R", "S"], 2)
+        case scenes.Level_08:
+            scene = Practice(["O", "P", "Q", "R", "S"], 2)
+        case scenes.Level_09:
+            pass
+        case scenes.Level_10:
+            scene = Lesson(["T", "U", "Y", "K", "W", "X", "Z"], 2)
+        case scenes.Level_11:
+            scene = Practice(["T", "U", "Y", "K", "W", "X", "Z"], 2)
+        case scenes.Level_12:
+            pass
+        case scenes.Level_13:
+            scene = Lesson(["num"], 2)
+        case scenes.Level_14:
+            scene = Practice(["num"], 2)
+        case scenes.Level_15:
+            pass
+        case scenes.Level_16:
+            pass
+
+    try:
+        scene
+    except:
+        scene = MainMenu()
+    
+    return scene
 
 if __name__ == "__main__":
     from Classes import Capture as pose

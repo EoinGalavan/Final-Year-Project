@@ -25,7 +25,29 @@ frameRate = 60
 images = load_images("Images/")
 
 # scene enum
-scenes = Enum('Scenes', ['MainMenu', 'Lesson', 'Practice'])
+class scenes(Enum):
+    MainMenu = 0 
+    LevelSelect_01 = 1 
+    LevelSelect_02 = 2 
+    LevelSelect_03 = 3 
+    LevelSelect_04 = 4 
+    Level_01 = 5 
+    Level_02 = 6 
+    Level_03 = 7 
+    Level_04 = 8 
+    Level_05 = 9 
+    Level_06 = 10 
+    Level_07 = 11
+    Level_08 = 12
+    Level_09 = 13
+    Level_10 = 14
+    Level_11 = 15
+    Level_12 = 16
+    Level_13 = 17
+    Level_14 = 18
+    Level_15 = 19
+    Level_16 = 20
+
 
 # Define some colors
 BLACK = ( 0, 0, 0)
