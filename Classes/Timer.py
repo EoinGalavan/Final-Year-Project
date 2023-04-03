@@ -16,7 +16,6 @@ class Timer:
     def update(self):
         ticks = pygame.time.get_ticks()
         self.waitTime = self.maxWaitTime - (ticks - self.startTime)
-        print(self.waitTime)
         if(self.waitTime <= 0):
             self.waitTime = self.maxWaitTime
             self.startTime = ticks

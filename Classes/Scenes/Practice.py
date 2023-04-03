@@ -1,14 +1,16 @@
 from Classes.Scene import *
 
-class Level(Scene):
-    def __init__(self):
+class Practice(Scene):
+    def __init__(self, testedLetters, time):
         buttonWidth, buttonHeight = 100, 100
         buttonX, buttonY= size[0] / 2 - buttonWidth / 2, size[1] / 2 - buttonHeight / 2
         self.button = Button((buttonX, buttonY, buttonWidth, buttonHeight), "Back", 60)
-        self.output = ""
         self.score = 0
-        self.timer = Timer(size, 2)
+        self.timer = Timer(size, time)
         self.letterPos = (size[0] / 2, size[1] / 4)
+        self.testedLetters = testedLetters
+        self.imageSize = (95, 125)
+        self.imagePos = (size[0] / 2 - self.imageSize[0] / 2, size[1] / 4 - self.imageSize[1] / 2)
         self.newLetter()
 
     def update(self, keypoint_coords, leftHandPos, rightHandPos, currentScene):
@@ -17,7 +19,6 @@ class Level(Scene):
             if(len(poseResult) == 1):
                 if(poseResult == self.currentLetter):
                     self.score += 1
-                self.output += poseResult
             self.newLetter()
         # check buttons
         if(self.button.checkCollision(leftHandPos, rightHandPos)):
@@ -31,9 +32,9 @@ class Level(Scene):
         self.button.draw(screen)
         self.timer.draw(screen)
         text_surface = my_font.render(str(self.score), False, (0, 0, 0))
-        currentLetterText = my_font.render(str(self.currentLetter), False, (0, 0, 0))
         screen.blit(text_surface, (0,0))
-        screen.blit(currentLetterText, self.letterPos)
+        images[self.currentLetter + "-"] = pygame.transform.scale(images[self.currentLetter + "-"], self.imageSize)
+        screen.blit(images[self.currentLetter + "-"], self.imagePos)
 
     def newLetter(self):
-        self.currentLetter = random.choice(["A", "B", "C", "D", "E", "F", "G"])
+        self.currentLetter = random.choice(self.testedLetters)

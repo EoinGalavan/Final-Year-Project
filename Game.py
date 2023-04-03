@@ -4,7 +4,8 @@ import cv2
 import numpy
 
 from Classes.Scenes.MainMenu import *
-from Classes.Scenes.Level import *
+from Classes.Scenes.Lesson import *
+from Classes.Scenes.Practice import *
 
 def main():
     pygame.init()
@@ -55,8 +56,10 @@ def main():
             match currentScene:
                 case scenes.MainMenu:
                     scene = MainMenu()
-                case scenes.Level:
-                    scene = Level()
+                case scenes.Practice:
+                    scene = Practice(["A", "B", "C", "D", "E", "F", "G"], 2)
+                case scenes.Lesson:
+                    scene = Lesson(["A", "B", "C", "D", "E", "F", "G"], 2)
         
         # --- Go ahead and update the screen with what we've drawn.
         pygame.display.flip()
