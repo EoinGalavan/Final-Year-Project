@@ -16,9 +16,8 @@ class Practice(Scene):
     def update(self, keypoint_coords, leftHandPos, rightHandPos, currentScene):
         if(self.timer.update()):
             poseResult = AnalysePose(keypoint_coords[leftShoulder], keypoint_coords[leftWrist], keypoint_coords[rightShoulder], keypoint_coords[rightWrist])
-            if(len(poseResult) == 1):
-                if(poseResult == self.currentLetter):
-                    self.score += 1
+            if(poseResult == self.currentLetter):
+                self.score += 1
             self.newLetter()
         # check buttons
         if(self.button.checkCollision(leftHandPos, rightHandPos)):

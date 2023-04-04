@@ -17,19 +17,16 @@ class Lesson(Scene):
     def update(self, keypoint_coords, leftHandPos, rightHandPos, currentScene):
         if(self.timer.update()):
             poseResult = AnalysePose(keypoint_coords[leftShoulder], keypoint_coords[leftWrist], keypoint_coords[rightShoulder], keypoint_coords[rightWrist])
-            if(len(poseResult) == 1):
-                if(poseResult == self.currentLetter):
-                    if(self.learning):
-                        self.learnt.append(self.currentLetter)
-                        self.learning = False
-                        self.learnLetter()
-                    else:
-                        self.newLetter()
+            if(poseResult == self.currentLetter):
+                if(self.learning):
+                    self.learnt.append(self.currentLetter)
+                    self.learning = False
+                    self.learnLetter()
+                else:
+                    self.newLetter()
         # check buttons
         if(self.button.checkCollision(leftHandPos, rightHandPos)):
             currentScene = scenes.MainMenu
-        
-        
 
         return currentScene
 

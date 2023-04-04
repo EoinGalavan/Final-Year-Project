@@ -50,6 +50,8 @@ def main():
 
         # --- Drawing code should go here
         scene.draw()
+        pygame.draw.circle(screen, (255, 0, 0), leftHandPos, 5)
+        pygame.draw.circle(screen, (255, 0, 0), rightHandPos, 5)
             
         # if the scene changes update it here
         if(activeScene != currentScene):
@@ -78,9 +80,9 @@ def changeScene(currentScene):
         case scenes.LevelSelect_04:
             scene = LevelSelect(4)
         case scenes.Level_01:
-            scene = Lesson(["endWord", "reset", "A", "B", "C", "D", "E", "F", "G"], 2)
+            scene = Lesson(["EndWord", "Reset", "A", "B", "C", "D", "E", "F", "G"], 2)
         case scenes.Level_02:
-            scene = Practice(["endWord", "reset","A", "B", "C", "D", "E", "F", "G"], 2)
+            scene = Practice(["EndWord", "Reset","A", "B", "C", "D", "E", "F", "G"], 2)
         case scenes.Level_03:
             pass
         case scenes.Level_04:
@@ -102,9 +104,9 @@ def changeScene(currentScene):
         case scenes.Level_12:
             pass
         case scenes.Level_13:
-            scene = Lesson(["num"], 2)
+            scene = Lesson(["Num"], 2)
         case scenes.Level_14:
-            scene = Practice(["num"], 2)
+            scene = Practice(["Num"], 2)
         case scenes.Level_15:
             pass
         case scenes.Level_16:
