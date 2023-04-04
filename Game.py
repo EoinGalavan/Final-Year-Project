@@ -6,6 +6,7 @@ import numpy
 from Classes.Scenes.MainMenu import *
 from Classes.Scenes.Lesson import *
 from Classes.Scenes.Practice import *
+from Classes.Scenes.Test import *
 from Classes.Scenes.LevelSelect import *
 
 def main():
@@ -84,7 +85,7 @@ def changeScene(currentScene):
         case scenes.Level_02:
             scene = Practice(["EndWord", "Reset","A", "B", "C", "D", "E", "F", "G"], 2)
         case scenes.Level_03:
-            pass
+            scene = Test(["ACE", "BED"], 2)
         case scenes.Level_04:
             scene = Lesson(["H", "I", "K", "L", "M", "N"], 2)
         case scenes.Level_05:
