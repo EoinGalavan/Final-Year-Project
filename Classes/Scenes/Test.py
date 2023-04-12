@@ -24,6 +24,7 @@ class Test(Scene):
                     self.checkSentence()
                 elif(poseResult == "Reset"):
                     self.sentence = ""
+                    self.numbersMode = False
                 elif(poseResult == "EndWord"):
                     if(len(self.sentence) != 0 and self.sentence[-1] != " "):
                         self.sentence += " "

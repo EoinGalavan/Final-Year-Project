@@ -83,7 +83,7 @@ lettersPhase1 = ["EndWord", "Reset", "A", "B", "C", "D", "E", "F", "G"]
 lettersPhase2 = ["H", "I", "K", "L", "M", "N"]
 lettersPhase3 = ["O", "P", "Q", "R", "S", "J", "V"]
 lettersPhase4 = ["T", "U", "Y", "K", "W", "X", "Z"]
-lettersPhase5 = ["Num"]
+lettersPhase5 = ["Num", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
 wordsPhase1 = ["ACE", "ADD", "AGE", "BAD", "BAG", "BED", "BEE", "BEG", "CAB", "DAB", "DAD", "EBB", "EGG", "FAB", "FAD", "FED", "FEE", "GAB", "GAG"]
 wordsPhase2 = ["ABLE", "ACHE", "ACID", "AKIN", "BAKE", "BEND", "BIDE", "BIKE", "CALM", "CHIN", "CLAD", "CHEF", "DANK", "DAME", "DEAF", "DIAL", 
