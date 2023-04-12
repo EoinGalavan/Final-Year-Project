@@ -81,37 +81,37 @@ def changeScene(currentScene):
         case scenes.LevelSelect_04:
             scene = LevelSelect(4)
         case scenes.Level_01:
-            scene = Lesson(["EndWord", "Reset", "A", "B", "C", "D", "E", "F", "G"], 2)
+            scene = Lesson(lettersPhase1, timerLength)
         case scenes.Level_02:
-            scene = Practice(["EndWord", "Reset","A", "B", "C", "D", "E", "F", "G"], 2)
+            scene = Practice(lettersPhase1, timerLength)
         case scenes.Level_03:
-            scene = Test(["ACE", "BED"], 2)
+            scene = Test(wordsPhase1, timerLength)
         case scenes.Level_04:
-            scene = Lesson(["H", "I", "K", "L", "M", "N"], 2)
+            scene = Lesson(lettersPhase2, timerLength)
         case scenes.Level_05:
-            scene = Practice(["H", "I", "K", "L", "M", "N"], 2)
+            scene = Practice(lettersPhase2, timerLength)
         case scenes.Level_06:
-            pass
+            scene = Test(wordsPhase2, timerLength)
         case scenes.Level_07:
-            scene = Lesson(["O", "P", "Q", "R", "S"], 2)
+            scene = Lesson(lettersPhase3, timerLength)
         case scenes.Level_08:
-            scene = Practice(["O", "P", "Q", "R", "S"], 2)
+            scene = Practice(lettersPhase3, timerLength)
         case scenes.Level_09:
-            pass
+            scene = Test(wordsPhase3, timerLength)
         case scenes.Level_10:
-            scene = Lesson(["T", "U", "Y", "K", "W", "X", "Z"], 2)
+            scene = Lesson(lettersPhase4, timerLength)
         case scenes.Level_11:
-            scene = Practice(["T", "U", "Y", "K", "W", "X", "Z"], 2)
+            scene = Practice(lettersPhase4, timerLength)
         case scenes.Level_12:
-            pass
+            scene = Test(wordsPhase4, timerLength)
         case scenes.Level_13:
-            scene = Lesson(["Num"], 2)
+            scene = Lesson(lettersPhase5, timerLength)
         case scenes.Level_14:
-            scene = Practice(["Num"], 2)
+            scene = Practice(lettersPhase5, timerLength)
         case scenes.Level_15:
-            pass
+            scene = Test(wordsPhase5, timerLength)
         case scenes.Level_16:
-            pass
+            scene = Test(wordsPhase6, timerLength)
 
     try:
         scene

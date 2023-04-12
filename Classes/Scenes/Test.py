@@ -18,7 +18,7 @@ class Test(Scene):
                 poseResult = AnalysePose(keypoint_coords[leftShoulder], keypoint_coords[leftWrist], keypoint_coords[rightShoulder], keypoint_coords[rightWrist])
                 if(len(poseResult) == 1):
                     if(self.numbersMode):
-                        pass
+                        self.addNumber(poseResult)
                     else:
                         self.sentence += poseResult
                     self.checkSentence()
