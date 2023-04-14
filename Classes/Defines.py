@@ -13,7 +13,7 @@ def load_images(path_to_directory):
         if filename.endswith('.png'):
             path = os.path.join(path_to_directory, filename)
             key = filename[:-4]
-            image_dict[key] = pygame.image.load(path).convert()
+            image_dict[key] = pygame.image.load(path).convert_alpha()
     return image_dict
 
 # Open a new window

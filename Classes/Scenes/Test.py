@@ -3,7 +3,7 @@ from Classes.Scene import *
 class Test(Scene):
     def __init__(self, toSpell, time):
         buttonWidth, buttonHeight = 100, 100
-        buttonX, buttonY= size[0] / 2 - buttonWidth / 2, size[1] / 2 - buttonHeight / 2
+        buttonX, buttonY= size[0] / 2 - buttonWidth / 2, size[1] * 0.6 - buttonHeight / 2
         self.button = Button((buttonX, buttonY, buttonWidth, buttonHeight), "Back", 60)
         self.timer = Timer(size, time)
         self.toSpell = toSpell

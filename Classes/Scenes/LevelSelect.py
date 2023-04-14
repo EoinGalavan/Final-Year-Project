@@ -11,7 +11,7 @@ class LevelSelect(Scene):
         self.button3 = Button((offset, size[1] - (buttonSize + offset), buttonSize, buttonSize), str(phase - 1), 45)
         self.button4 = Button((size[0] - (buttonSize + offset), size[1] - (buttonSize + offset), buttonSize, buttonSize), str(phase), 45)
         buttonWidth, buttonHeight = 100, 100
-        buttonX, buttonY= size[0] / 2 - buttonWidth / 2, size[1] / 2 - buttonHeight / 2
+        buttonX, buttonY= size[0] / 2 - buttonWidth / 2, size[1] * 0.6 - buttonHeight / 2
         self.backButton = Button((buttonX, buttonY, buttonWidth, buttonHeight), "Back", 60)
 
     def update(self, keypoint_coords, leftHandPos, rightHandPos, currentScene):
