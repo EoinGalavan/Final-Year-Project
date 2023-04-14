@@ -8,6 +8,7 @@ class Test(Scene):
         self.timer = Timer(size, time)
         self.toSpell = toSpell
         self.counter = 0
+        self.maxQuestions = 15
         self.numbersMode = False
         self.check = True
         self.newSentence()
@@ -56,8 +57,8 @@ class Test(Scene):
     def newSentence(self):
         self.goalSentence = "Win"
         self.sentence = "You"
-        if(self.counter < 15):
-            numWords = ((self.counter - self.counter%4) / 4) + 1
+        if(self.counter < self.maxQuestions):
+            numWords = ((self.counter - self.counter%5) / 5) + 1
             self.goalSentence = ""
             for i in range(int(numWords)):
                 self.goalSentence += random.choice(self.toSpell) + " "

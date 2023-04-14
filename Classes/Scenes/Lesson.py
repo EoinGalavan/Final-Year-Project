@@ -10,8 +10,11 @@ class Lesson(Scene):
         self.learnt = []
         self.currentLearn = 0
         self.learning = False
-        self.imageSize = (256.4, 152.8)
-        self.imagePos = (size[0] / 2 - self.imageSize[0] / 2, size[1] / 4 - self.imageSize[1] / 2)
+        self.exampleSize = (256.4, 152.8)
+        self.questionSize = (95, 125)
+        self.imagePos = (size[0] / 2, size[1] / 4)
+        self.counter = 0
+        self.lessonCpmplete = False
         self.learnLetter()
 
     def update(self, keypoint_coords, leftHandPos, rightHandPos, currentScene):
@@ -21,9 +24,12 @@ class Lesson(Scene):
                 if(self.learning):
                     self.learnt.append(self.currentLetter)
                     self.learning = False
-                    self.learnLetter()
-                else:
+                    self.counter = min(len(self.learnt), 3)
                     self.newLetter()
+                else:
+                    self.counter -= 1
+                    self.newLetter()
+
         # check buttons
         if(self.button.checkCollision(leftHandPos, rightHandPos)):
             currentScene = scenes.MainMenu
@@ -33,12 +39,23 @@ class Lesson(Scene):
     def draw(self):
         self.button.draw(screen)
         self.timer.draw(screen)
-        # if(self.learning):
-        images[self.currentLetter] = pygame.transform.scale(images[self.currentLetter], self.imageSize)
-        screen.blit(images[self.currentLetter], self.imagePos)
+        if(not self.lessonCpmplete):
+            if(self.learning):
+                image = pygame.transform.scale(images[self.currentLetter], self.exampleSize)
+            else:
+                image = pygame.transform.scale(images[self.currentLetter + "-"], self.questionSize)
+            pos = image.get_rect(center=(self.imagePos))
+            screen.blit(image, pos)
+        else:
+            input = my_font.render("Continue to next stage to practice", False, (0, 0, 0))
+            inputRect = input.get_rect(center=(size[0] / 2, size[1] / 4))
+            screen.blit(input, inputRect)
 
     def newLetter(self):
-        self.currentLetter = random.choice(self.toLearn)
+        if(self.counter > 0):
+            self.currentLetter = random.choice(self.learnt)
+        else:
+            self.learnLetter()
 
     def learnLetter(self):
         if(self.currentLearn < len(self.toLearn)):
@@ -46,4 +63,4 @@ class Lesson(Scene):
             self.currentLearn += 1
             self.learning = True
         else:
-            self.newLetter()
+            self.lessonCpmplete = True

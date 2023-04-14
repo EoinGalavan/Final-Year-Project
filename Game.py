@@ -81,7 +81,8 @@ def changeScene(currentScene):
         case scenes.LevelSelect_04:
             scene = LevelSelect(4)
         case scenes.Level_01:
-            scene = Lesson(lettersPhase1, timerLength)
+            #scene = Lesson(lettersPhase1, timerLength)
+            scene = Lesson("A", timerLength)
         case scenes.Level_02:
             scene = Practice(lettersPhase1, timerLength)
         case scenes.Level_03:
