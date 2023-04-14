@@ -2,10 +2,13 @@ from Classes.Scene import *
 
 class MainMenu(Scene):
     def __init__(self):
-        self.button1 = Button((40, 40, 200, 80), "Phase 1", 45)
-        self.button2 = Button((size[0] - 240, 40, 200, 80), "Phase 2", 45)
-        self.button3 = Button((40, size[1] - 120, 200, 80), "Phase 3", 45)
-        self.button4 = Button((size[0] - 240, size[1] - 120, 200, 80), "Phase 4", 45)
+        buttonWidth = 200
+        buttonHeight = 80
+        offset = 80
+        self.button1 = Button((offset, offset, buttonWidth, buttonHeight), "Phase 1", 45)
+        self.button2 = Button((size[0] - (offset + buttonWidth), offset, buttonWidth, buttonHeight), "Phase 2", 45)
+        self.button3 = Button((offset, size[1] - (offset + buttonHeight), buttonWidth, buttonHeight), "Phase 3", 45)
+        self.button4 = Button((size[0] - (offset + buttonWidth), size[1] - (offset + buttonHeight), buttonWidth, buttonHeight), "Phase 4", 45)
 
     def update(self, keypoint_coords, leftHandPos, rightHandPos, currentScene):
         # check buttons

@@ -9,7 +9,7 @@ model = posenet.load_model(101)
 model = model.cuda()
 output_stride = model.output_stride
 
-def Capture(cap):
+def Capture(cap, DEBUG):
     input_image, display_image, output_scale = posenet.read_cap(
             cap, scale_factor=0.7125, output_stride=output_stride)
 
@@ -29,8 +29,12 @@ def Capture(cap):
 
     keypoint_coords *= output_scale
 
-    # TODO this isn't particularly fast, use GL for drawing and display someday...
-    overlay_image = posenet.draw_skel_and_kp(
-        display_image, pose_scores, keypoint_scores, keypoint_coords,
-        min_pose_score=0.15, min_part_score=0.1)
-    return overlay_image, keypoint_coords[0]
+    if(DEBUG):
+        # TODO this isn't particularly fast, use GL for drawing and display someday...
+        overlay_image = posenet.draw_skel_and_kp(
+            display_image, pose_scores, keypoint_scores, keypoint_coords,
+            min_pose_score=0.15, min_part_score=0.1)
+        return overlay_image, keypoint_coords[0]
+    else:
+        return display_image, keypoint_coords[0]
+    

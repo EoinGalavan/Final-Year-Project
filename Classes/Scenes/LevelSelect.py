@@ -4,7 +4,7 @@ class LevelSelect(Scene):
     def __init__(self, phase):
         phase *= 4
         buttonSize = 80
-        offset = 80
+        offset = 100
         self.phase = phase
         self.button1 = Button((offset, offset, buttonSize, buttonSize), str(phase - 3), 45)
         self.button2 = Button((size[0] - (buttonSize + offset), offset, buttonSize, buttonSize), str(phase - 2), 45)

@@ -37,7 +37,8 @@ def main():
         
         # First, clear the screen and draw camera
         screen.fill(0)
-        frame, keypoint_coords = pose.Capture(cap)
+        frame, keypoint_coords = pose.Capture(cap, DEBUG)
+        print(keypoint_coords)
         if frame is not None :
             frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
             frame=numpy.rot90(frame)
@@ -51,8 +52,9 @@ def main():
 
         # --- Drawing code should go here
         scene.draw()
-        pygame.draw.circle(screen, (255, 0, 0), leftHandPos, 5)
-        pygame.draw.circle(screen, (255, 0, 0), rightHandPos, 5)
+        if(DEBUG):
+            pygame.draw.circle(screen, (255, 0, 0), leftHandPos, 5)
+            pygame.draw.circle(screen, (255, 0, 0), rightHandPos, 5)
             
         # if the scene changes update it here
         if(activeScene != currentScene):
