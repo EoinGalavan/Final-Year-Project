@@ -6,7 +6,7 @@ from enum import Enum
 import random
 import os
     
-DEBUG = True   
+DEBUG = False   
 
 def load_images(path_to_directory):
     """Load images and return them as a dict."""

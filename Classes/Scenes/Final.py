@@ -1,12 +1,14 @@
 from Classes.Scene import *
 
-class Test(Scene):
-    def __init__(self, toSpell, time):
+class Final(Scene):
+    def __init__(self, time):
         buttonWidth, buttonHeight = 100, 100
         buttonX, buttonY= size[0] / 2 - buttonWidth / 2, size[1] * 0.6 - buttonHeight / 2
         self.button = Button((buttonX, buttonY, buttonWidth, buttonHeight), "Back", 60)
         self.timer = Timer(size, time)
-        self.toSpell = toSpell
+        self.sentences = ["THE QUICK BROWN FOX JUMPED OVER THE LAZY DOG", "101 DALMATIANS", "AROUND THE WORLD IN 80 DAYS", 
+        "LLANFAIRPWLLGWYNGYLL", "QUETZALCOATL", "LONDON PARIS MILAN", "ITS A WONDERFUL LIFE", "525600 MINUTES", 
+        "THE BALLAD OF JANE DOE", "PHILOSOPHICAL ARGUMENTS"]
         self.counter = 0
         self.maxQuestions = 10
         self.numbersMode = False
@@ -59,13 +61,9 @@ class Test(Scene):
         self.goalSentence = "Win"
         self.sentence = "You"
         if(self.counter < self.maxQuestions):
-            numWords = ((self.counter - self.counter%3) / 3) + 1
-            self.goalSentence = ""
-            for i in range(int(numWords)):
-                self.goalSentence += random.choice(self.toSpell) + " "
-            self.goalSentence = self.goalSentence[:-1]
             self.sentence = ""
-            self.counter += 1
+            self.goalSentence = random.choice(self.sentences)
+            self.sentences.remove(self.goalSentence)
         else:
             self.check = False
 

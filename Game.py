@@ -8,6 +8,7 @@ from Classes.Scenes.Lesson import *
 from Classes.Scenes.Practice import *
 from Classes.Scenes.Test import *
 from Classes.Scenes.LevelSelect import *
+from Classes.Scenes.Final import *
 
 def main():
     pygame.init()
@@ -113,7 +114,7 @@ def changeScene(currentScene):
         case scenes.Level_15:
             scene = Test(wordsPhase5, timerLength)
         case scenes.Level_16:
-            scene = Test(wordsPhase6, timerLength)
+            scene = Final(timerLength)
 
     try:
         scene
