@@ -39,7 +39,6 @@ def main():
         # First, clear the screen and draw camera
         screen.fill(0)
         frame, keypoint_coords = pose.Capture(cap, DEBUG)
-        print(keypoint_coords)
         if frame is not None :
             frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
             frame=numpy.rot90(frame)
